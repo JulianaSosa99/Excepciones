@@ -10,8 +10,23 @@ namespace Juliana_Sosa_Taller1.Models
         public string? Name { get; set; }
         public bool WithCheese {  get; set; }
         [Range(0.01, 9999.9)] //el rango del siguiente atributo
+        [VerificarRango]
         public decimal Precio { get; set; }
         //hola es una clase nueva
-
+        public class VerificarRango : ValidationAttribute
+        {
+            public override bool IsValid(object? value)
+            {
+                decimal valor = (decimal)value;
+                if (valor < 20)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
